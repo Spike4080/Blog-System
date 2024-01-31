@@ -13,7 +13,7 @@
         @foreach($blogs as $fileObj)
         <div class="blog-card">
             <h1>{{$fileObj->title}}</h1>
-            <a href="blogs/{{$fileObj->slug}}">
+            <a href="{{$fileObj->slug}}">
                 {{$fileObj->slug}}
             </a>
             <p>{{$fileObj->body}}</p>
