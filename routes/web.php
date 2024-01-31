@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $blogs = Blog::all();
+    $blogs = Blog::orderBy('title', 'desc')->get();
     return view('welcome', [
         'blogs' => $blogs
     ]);
