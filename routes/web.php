@@ -21,8 +21,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/blog-detail', function () {
+Route::get('/blogs/{blog:slug}', function (Blog $blog) {
     return view('blog-detail', [
-        'blogs' => Blog::find()
+        'blogs' => $blog
     ]);
 });
