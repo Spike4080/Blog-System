@@ -1,8 +1,10 @@
 <?php
 
-use App\Models\Blog;
-use App\Models\Category;
-use App\Models\User;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CatogeryController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,35 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $blogs = Blog::with('category')->orderBy('title')->get(); // fix n+1 problem before looping
-    $title = "My Blog Title";
-    return view('home', [
-        'blogs' => $blogs,
-        'title' => $title
-    ]);
-});
-
-Route::get('/{blog:slug}', function (Blog $blog) {
-    return view('blog-detail', [
-        'blogs' => $blog
-    ]);
-});
+Route::get('/', [BlogController::class, 'index']);
+Route::get('/{blog:slug}', [BlogController::class, 'show']);
 
 // Find Category Route
 
-Route::get('/categories/{category:id}', function (Category $category) {
-    return view('home', [
-        'blogs' => $category->blogs->load('category'), // fix n+1 problem afteer looping
-        'title' => $category->name
-    ]);
-});
+Route::get('/categories/{category:id}', [CatogeryController::class, 'index']);
 
-// Find User Route
+// Username Route
 
-Route::get('/users/{user:id}', function (User $user) {
-    return view('home', [
-        'blogs' => $user->blogs->load('user'), // fix n+1 problem afteer looping
-        'title' => $user->name
-    ]);
-});
+Route::get('/users/{user:username}', [UserController::class, 'index']);
+
+// Regigster Route
+Route::get('/register/create', [RegisterController::class, 'create']);
+Route::post('/register/create', [RegisterController::class, 'store']);
+
+// Logout ROute
+Route::post('/logout', [LogoutController::class, 'destory']);

@@ -21,4 +21,27 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeFilter($query, $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query) use ($filters) {
+            $query->where(function ($query) use ($filters) {
+                $query->where('title', 'LIKE', '%' . $filters['search'] . '%')
+                    ->orwhere('body', 'LIKE', '%' . $filters['search'] . '%')
+                    ->paginate(3);
+            });
+        })
+            // filter by user
+            ->when($filters['username'] ?? null, function ($query) use ($filters) {
+                $query->wherehas('user', function ($query) use ($filters) {
+                    $query->where('username', $filters['username']);
+                });
+            })
+            // filter by category
+            ->when($filters['category'] ?? null, function ($query) use ($filters) {
+                $query->wherehas('category', function ($query) use ($filters) {
+                    $query->where('id', $filters['category']);
+                });
+            });
+    }
 }
