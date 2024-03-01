@@ -49,25 +49,25 @@
                 <div class="flex justify-center items-center space-x-10">
                     @if(!auth()->user())
 
-                    <a href="" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
+                    <a href="/login" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
 
 
-                        <span class="text-white">Log In</span>
+                        <button class="text-white" type="submit">Log In</button>
                     </a>
 
-                    <a href="/register/create" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
+                    <a href="/register" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
 
 
-                        <span class="text-white">Register</span>
+                        <button class="text-white" type="submit">Register</button>
                     </a>
                     @else
-                    <a href="" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
+                    <a href="/write" class="bg-indigo-500 px-4 py-2 flex justify-center items-center rounded-md space-x-3 hover:opacity-90">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
@@ -95,7 +95,7 @@
 
     <section class="container mx-auto mt-10">
 
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3 gap-4 mb-10">
             @forelse ($blogs as $blog)
             <div class="bg-gray-100 p-3 rounded-md">
                 <div class="w-full h-[300px] bg-gray-200 flex justify-center items-center">
@@ -105,7 +105,7 @@
                 <div class="mt-3 h-[200px]">
                     <h1 class="font-bold uppercase text-lg mb-3">{{$blog->title}}</h1>
                     <p class="text-blue-700">
-                        <a class="hover:opacity-90 font-bold font-medium" href="{{$blog->slug}}">
+                        <a class="hover:opacity-90 font-bold font-medium" href="/blogs/{{$blog->slug}}">
                             {{$blog->slug}}
                         </a>
                     </p>
@@ -134,18 +134,7 @@
 
         </div>
         {{$blogs->links()}}
-
-
-
-
-
     </section>
-
-    <body>
-
-
-    </body>
-
 </body>
 
 </html>

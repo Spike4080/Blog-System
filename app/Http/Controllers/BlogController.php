@@ -11,7 +11,6 @@ class BlogController extends Controller
 {
     public function index()
     {
-
         $blogs = Blog::with('category', 'user')->orderBy('title')->filter(request(['search', 'username', 'category']))
             ->paginate(3)
             ->withQuerystring();
@@ -26,8 +25,10 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
+        $comments = $blog->comments()->latest()->paginate(5);
         return view('blog-detail', [
-            'blogs' => $blog
+            'blogs' => $blog,
+            'comments' => $comments
         ]);
     }
 }

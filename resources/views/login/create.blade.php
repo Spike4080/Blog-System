@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Form</title>
+    <title>Login Form</title>
     <style>
         body {
             margin: 0 auto;
@@ -105,24 +105,8 @@
 
 <body>
     <form action="" method="POST">
-        <h1>Register Form</h1>
+        <h1>Login Form</h1>
         @csrf
-        <div>
-            <label>Name</label>
-            <input type="text" placeholder="Name" name="name" value="{{old('name')}}">
-
-        </div>
-        @error('name')
-        <p>{{$message}}</p>
-        @enderror
-        <div>
-            <label>Username</label>
-            <input type="text" placeholder="Username" name="username" value="{{old('username')}}">
-
-        </div>
-        @error('username')
-        <p>{{$message}}</p>
-        @enderror
         <div>
             <label>Email</label>
             <input type="email" placeholder="Email" name="email" value="{{old('email')}}">
@@ -143,10 +127,10 @@
         <div class="line"></div>
         <div class="flex">
             <div>
-                <span>Already have an account ? </span>
+                <span>Don't have an account ? </span>
             </div>
             <p>
-                <a href="/login">Login</a>
+                <a href="/register">Register</a>
             </p>
         </div>
     </form>

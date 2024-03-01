@@ -11,7 +11,7 @@ class CatogeryController extends Controller
     {
         return view('home', [
             'blogs' => $category->blogs()->with('category', 'user')->paginate(3), // fix n+1 problem afteer looping
-            'title' => $category->name
+            'title' => $category->title
         ]);
     }
 }

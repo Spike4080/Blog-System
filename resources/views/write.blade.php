@@ -105,50 +105,57 @@
 
 <body>
     <form action="" method="POST">
-        <h1>Register Form</h1>
+        <h1>Create Blog</h1>
         @csrf
         <div>
-            <label>Name</label>
-            <input type="text" placeholder="Name" name="name" value="{{old('name')}}">
+            <label>Title</label>comments
+            <input type="text" placeholder="Title" name="title" value="{{old('title')}}">
 
         </div>
-        @error('name')
+        @error('title')
         <p>{{$message}}</p>
         @enderror
         <div>
-            <label>Username</label>
-            <input type="text" placeholder="Username" name="username" value="{{old('username')}}">
+            <label>Slug</label>
+            <input type="text" placeholder="Slug" name="slug" value="{{old('slug')}}">
 
         </div>
-        @error('username')
+        @error('slug')
         <p>{{$message}}</p>
         @enderror
         <div>
-            <label>Email</label>
-            <input type="email" placeholder="Email" name="email" value="{{old('email')}}">
+            <label>Intro</label>
+            <input type="text" placeholder="Intro" name="intro" value="{{old('intro')}}">
 
         </div>
-        @error('email')
+        @error('intro')
         <p>{{$message}}</p>
         @enderror
         <div>
-            <label>Password</label>
-            <input type="password" placeholder="Password" name="password">
+            <label>Body</label>
+            <input type="text" placeholder="Body" name="body">
 
         </div>
-        @error('password')
+        @error('body')
         <p>{{$message}}</p>
         @enderror
-        <button type="submit">Create Account</button>
-        <div class="line"></div>
-        <div class="flex">
-            <div>
-                <span>Already have an account ? </span>
-            </div>
-            <p>
-                <a href="/login">Login</a>
-            </p>
+        <div>
+            <label>Category ID</label>
+            <input type="number" placeholder="Category ID" name="category_id">
+
         </div>
+        @error('category_id')
+        <p>{{$message}}</p>
+        @enderror
+        <div>
+            <label>User ID</label>
+            <input type="number" placeholder="User ID" name="user_id">
+
+        </div>
+        @error('user_id')
+        <p>{{$message}}</p>
+        @enderror
+        <button type="submit">Create Blog</button>
     </form>
 </body>
 
